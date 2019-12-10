@@ -15,6 +15,7 @@ public class Game extends JPanel implements ActionListener, KeyListener {
     Timer tm = new Timer(1, this);
     int x = 350, y = 550;
     double velX = 0, velY = 0;
+    private Color rectColor = Color.ORANGE;
 
     public Game() {
         tm.start();
@@ -24,33 +25,42 @@ public class Game extends JPanel implements ActionListener, KeyListener {
         setBackground(Color.BLACK);
     }
 
-    public void changeBackground() {
-        setBackground(Color.GREEN);
-//        try {
-//            Thread.sleep(500);
-//        }
-//        catch(InterruptedException e){
-//            setBackground(Color.BLACK);
-//        }
-//        setBackground(Color.BLACK);
+    public void changeColorSuccess() {
 
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                rectColor = Color.GREEN;
+            }
+        });
     }
+
+    public void changeColorFail() {
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                rectColor = Color.RED;
+            }
+        });
+    }
+
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.ORANGE);
+        g.setColor(rectColor);
         g.fillRect(x, y, 100, 10);
     }
 
     public void left() {
         if (x > 0) {
-            velX = -3;
+            velX = -1;
         }
     }
 
     public void right() {
         if (x < 700) {
-            velX = 3;
+            velX = 1;
         }
     }
 

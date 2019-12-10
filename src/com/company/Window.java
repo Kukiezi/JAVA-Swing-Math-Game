@@ -60,7 +60,14 @@ class Window extends JFrame {
         res1.setBounds(100, 100, size.width, size.height);
         ActionListener taskPerformer = new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                height += 1;
+                if (round < 4) {
+                    height += 1;
+                } else if (round < 8) {
+                    height += 2;
+                } else if (round < 11) {
+                    height += 4;
+
+                }
                 res1.setBounds(100, height, size.width, size.height);
                 res2.setBounds(300, height, size.width, size.height);
                 res3.setBounds(500, height, size.width, size.height);
@@ -78,7 +85,9 @@ class Window extends JFrame {
                     if (data.get("result1").equals(data.get("score"))) {
                         System.out.println("trafiony 1");
                         score++;
-                        panel.changeBackground();
+                        panel.changeColorSuccess();
+                    } else {
+                        panel.changeColorFail();
                     }
                     nextRound();
                 } else if (height == 540 && res2.getX() + size.width >= panel.x && res2.getX() <= panel.x + 100) {
@@ -90,7 +99,9 @@ class Window extends JFrame {
                     if (data.get("result2").equals(data.get("score"))) {
                         System.out.println("trafiony 2");
                         score++;
-                        panel.changeBackground();
+                        panel.changeColorSuccess();
+                    } else {
+                        panel.changeColorFail();
                     }
                     nextRound();
                 } else if (height == 540 && res3.getX() + size.width >= panel.x && res3.getX() <= panel.x + 100) {
@@ -102,7 +113,9 @@ class Window extends JFrame {
                     if (data.get("result3").equals(data.get("score"))) {
                         System.out.println("trafiony 3");
                         score++;
-                        panel.changeBackground();
+                        panel.changeColorSuccess();
+                    } else {
+                        panel.changeColorFail();
                     }
                     nextRound();
                 } else if (height == 540 && res4.getX() + size.width >= panel.x && res4.getX() <= panel.x + 100) {
@@ -114,7 +127,9 @@ class Window extends JFrame {
                     if (data.get("result4").equals(data.get("score"))) {
                         System.out.println("trafiony 4");
                         score++;
-                        panel.changeBackground();
+                        panel.changeColorSuccess();
+                    } else {
+                        panel.changeColorFail();
                     }
                     nextRound();
                 }
@@ -125,7 +140,7 @@ class Window extends JFrame {
         };
 
 
-        timer = new Timer(5, taskPerformer);
+        timer = new Timer(15, taskPerformer);
         timer.start();
 
 
